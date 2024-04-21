@@ -66,3 +66,41 @@ function isElementInViewport(element, offset) {
 }
 
 window.addEventListener("scroll", setSkillsProgress);
+
+/**
+ * increase number on scroll
+ */
+
+const statsSection = document.querySelector("#stats");
+const statsItems = document.querySelectorAll("#stats .number");
+
+let isCounting = false;
+
+function startCountingAnimation(targetElement, goal) {
+  let count = setInterval(() => {
+    let currentValue = parseInt(targetElement.textContent, 10);
+    targetElement.textContent = currentValue + 1;
+
+    if (currentValue + 1 === goal) {
+      clearInterval(count);
+      if (targetElement.classList.contains("money")) {
+        targetElement.textContent = targetElement.textContent + "k";
+      }
+    }
+  }, 1000 / goal);
+}
+
+function handleScroll() {
+  if (!isCounting && isElementInViewport(statsSection, 50)) {
+    isCounting = true;
+
+    statsItems.forEach((item) => {
+      const goal = parseInt(item.getAttribute("data-stats"), 10);
+      startCountingAnimation(item, goal);
+    });
+
+    window.removeEventListener("scroll", handleScroll);
+  }
+}
+
+window.addEventListener("scroll", handleScroll);
