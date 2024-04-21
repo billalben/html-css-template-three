@@ -115,12 +115,17 @@ ul {
   position: absolute;
 }
 .dots-up {
-  top: 200px;
+  top: 100px;
   right: 0;
 }
 .dots-down {
-  bottom: 200px;
+  bottom: 100px;
   left: 0;
+}
+@media (max-width: 767px) {
+  .dots {
+    background-image: unset;
+  }
 }
 /* --------- */
 /* End Global Rules */
@@ -1020,20 +1025,18 @@ ul {
 }
 .events .subscribe form input[type="email"] {
   padding: 20px;
-  border: none;
+  border: 1px solid #dababa;
   flex: 1;
   caret-color: var(--main-color-alt);
   border-radius: 50px;
-}
-@media (max-width: 767px) {
-  .events .subscribe form input[type="email"] {
-    border-radius: 0;
-  }
+  transition: border var(--main-transition);
 }
 .events .subscribe form input[type="email"]:focus {
   outline: none;
+  border-color: #b69898;
 }
 .events .subscribe form input[type="email"]::placeholder {
+  opacity: 1;
   transition: opacity var(--main-transition);
 }
 .events .subscribe form input[type="email"]:focus::placeholder {
