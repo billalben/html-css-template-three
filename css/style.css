@@ -838,7 +838,9 @@ ul {
   border-radius: 4px;
 }
 .our-skills .skills .skill .the-progress span {
+  transition: width 1s;
   position: absolute;
+  width: 0;
   left: 0;
   top: 0;
   height: 100%;

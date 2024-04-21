@@ -45,3 +45,24 @@ const timeFunction = setInterval(() => {
   updateValue("hours", values.hours);
   updateValue("days", values.days);
 }, 1000);
+
+/**
+ * progress bar animation on scroll
+ */
+
+const skillSection = document.querySelector(".our-skills");
+const skillsSpans = document.querySelectorAll(".the-progress span");
+
+function setSkillsProgress() {
+  if (!isElementInViewport(skillSection, 50)) return;
+
+  skillsSpans.forEach((span) => (span.style.width = span.dataset.progress));
+
+  window.removeEventListener("scroll", setSkillsProgress);
+}
+
+function isElementInViewport(element, offset) {
+  return window.scrollY >= element.offsetTop - offset;
+}
+
+window.addEventListener("scroll", setSkillsProgress);
