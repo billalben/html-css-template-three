@@ -69,6 +69,7 @@ ul {
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
+  transition: all 500ms linear;
 }
 .main-title::before {
   left: -30px;
@@ -78,18 +79,24 @@ ul {
 }
 .main-title:hover::before {
   z-index: -1;
-  animation: left-move 0.5s linear forwards;
-  -webkit-animation: left-move 0.5s linear forwards;
+  animation: left-move 500ms linear forwards;
+  -webkit-animation: left-move 500ms linear forwards;
 }
 .main-title:hover::after {
   z-index: -1;
-  animation: right-move 0.5s linear forwards;
-  -webkit-animation: right-move 0.5s linear forwards;
+  animation: right-move 500ms linear forwards;
+  -webkit-animation: right-move 500ms linear forwards;
 }
 .main-title:hover {
   color: white;
   border: 2px solid white;
   transition-delay: 0.5s;
+}
+.main-title:not(:hover)::before {
+  animation: left-move-back 500ms linear forwards;
+}
+.main-title:not(:hover)::after {
+  animation: right-move-back 500ms linear forwards;
 }
 /* --------- */
 .spikes {
@@ -1583,6 +1590,44 @@ ul {
     width: 50%;
     height: 100%;
     border-radius: 0;
+  }
+}
+@keyframes left-move-back {
+  0% {
+    left: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+  50% {
+    left: 0;
+    width: 12px;
+    height: 12px;
+  }
+  100% {
+    left: -30px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+}
+@keyframes right-move-back {
+  0% {
+    right: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+  50% {
+    right: 0;
+    width: 12px;
+    height: 12px;
+  }
+  100% {
+    right: -30px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
   }
 }
 @keyframes moving-arrow {
